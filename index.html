@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Дмитрий Соя — премиальное социальное сопровождение. Интеллектуальное общение, сопровождение на культурные и деловые мероприятия. Конфиденциально.">
+    <title>Дмитрий Соя — Премиальное социальное сопровождение</title>
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== БАЗОВЫЕ СТИЛИ ===== */
+        :root {
+            --color-primary: #1B3A4A;
+            --color-accent: #C9A961;
+            --color-accent-dark: #A8893F;
+            --color-bg: #FAF9F7;
+            --color-bg-alt: #F2EFE9;
+            --color-text: #2C2C2C;
+            --color-text-light: #6B6B6B;
+            --color-border: #E5E0D6;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--color-primary);
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 1.5rem; }
+        h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+
+        p { margin-bottom: 1rem; }
+
+        a {
+            color: var(--color-accent-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover { color: var(--color-primary); }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-accent-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--color-text-light);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            border-bottom-color: var(--color-border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            letter-spacing: 0.15em;
+            font-weight: 600;
+        }
+
+        .logo span {
+            color: var(--color-accent-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--color-text);
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-accent-dark);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .burger span {
+            width: 25px;
+            height: 2px;
+            background: var(--color-primary);
+            transition: var(--transition);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(201, 169, 97, 0.05) 100%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--color-accent-dark);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .hero-note {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--color-accent);
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+
+        /* ===== КНОПКИ ===== */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-dark);
+            color: var(--color-bg);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        /* ===== FORMATS ===== */
+        .formats {
+            background: var(--color-bg-alt);
+        }
+
+        .formats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .format-card {
+            background: var(--color-bg);
+            padding: 2.5rem 2rem;
+            border-left: 3px solid var(--color-accent);
+            transition: var(--transition);
+        }
+
+        .format-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(27, 58, 74, 0.08);
+        }
+
+        .format-number {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .format-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .format-card p {
+            color: var(--color-text-light);
+            font-size: 0.98rem;
+            margin: 0;
+        }
+
+        /* ===== FOR WHOM ===== */
+        .for-whom-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .whom-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .whom-item:last-child {
+            border-bottom: none;
+        }
+
+        .whom-check {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary);
+            color: var(--color-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+        }
+
+        .whom-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .whom-content p {
+            color: var(--color-text-light);
+            margin: 0;
+            font-size: 0.98rem;
+        }
+
+        /* ===== PRINCIPLES ===== */
+        .principles {
+            background: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        .principles .section-label {
+            color: var(--color-accent);
+        }
+
+        .principles h2 {
+            color: var(--color-bg);
+        }
+
+        .principles .section-subtitle {
+            color: rgba(250, 249, 247, 0.7);
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .principle-item {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(201, 169, 97, 0.3);
+        }
+
+        .principle-item h3 {
+            color: var(--color-accent);
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .principle-item p {
+            color: rgba(250, 249, 247, 0.8);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            filter: grayscale(15%);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 1px solid var(--color-accent);
+            z-index: -1;
+        }
+
+        .about-text h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-quote {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            padding: 1.5rem 0 1.5rem 2rem;
+            border-left: 3px solid var(--color-accent);
+            margin: 2rem 0;
+            line-height: 1.5;
+        }
+
+        .about-details {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .about-details li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .about-details li:last-child {
+            border-bottom: none;
+        }
+
+        .about-details strong {
+            color: var(--color-text-light);
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ===== PROCESS ===== */
+        .process {
+            background: var(--color-bg-alt);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            counter-reset: step;
+        }
+
+        .step {
+            background: var(--color-bg);
+            padding: 2.5rem 2rem;
+            position: relative;
+            counter-increment: step;
+        }
+
+        .step::before {
+            content: counter(step, decimal-leading-zero);
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--color-accent);
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            opacity: 0.3;
+            font-weight: 400;
+        }
+
+        .step h3 {
+            margin-bottom: 1rem;
+            padding-right: 3rem;
+        }
+
+        .step p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+            padding: 1.5rem 0;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            color: var(--color-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            font-weight: 500;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--color-accent-dark);
+            transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 300;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            color: var(--color-text-light);
+            font-size: 0.98rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding-top: 1rem;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact {
+            background: var(--color-bg-alt);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info > p {
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+        }
+
+        .contact-methods {
+            list-style: none;
+        }
+
+        .contact-methods li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .contact-methods li:last-child {
+            border-bottom: none;
+        }
+
+        .contact-methods strong {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-light);
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .contact-methods a {
+            color: var(--color-primary);
+            font-size: 1.05rem;
+        }
+
+        .contact-form {
+            background: var(--color-bg);
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-light);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--color-text);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-accent-dark);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-note {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-primary);
+            color: rgba(250, 249, 247, 0.7);
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        footer .logo {
+            color: var(--color-bg);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .footer-legal {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(250, 249, 247, 0.1);
+            font-size: 0.8rem;
+            color: rgba(250, 249, 247, 0.5);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image::before {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--color-bg);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--color-border);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .burger {
+                display: flex;
+            }
+
+            .burger.active span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+
+            .burger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .burger.active span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .whom-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <nav>
+            <a href="#hero" class="logo">СОИ<span> · </span>СОПРОВОЖДЕНИЕ</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#formats">Форматы</a></li>
+                <li><a href="#for-whom">Для кого</a></li>
+                <li><a href="#principles">Принципы</a></li>
+                <li><a href="#about">О Дмитрии</a></li>
+                <li><a href="#process">Процесс</a></li>
+                <li><a href="#faq">Вопросы</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <button class="burger" id="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <span class="section-label">Премиальное социальное сопровождение</span>
+                <h1>Дмитрий Соя — <em>интеллектуальное общение</em> и безупречный вкус</h1>
+                <p class="hero-subtitle">
+                    Сопровождение на культурные, светские и деловые мероприятия для мужчин, 
+                    ценящих тактичность, конфиденциальность и высокий уровень сервиса.
+                </p>
+                <p class="hero-note">
+                    Исключительно платонический формат. Полное соблюдение личных границ 
+                    и законодательства РФ.
+                </p>
+                <a href="#contact" class="btn btn-primary">Запросить конфиденциальную консультацию</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMATS -->
+    <section class="formats" id="formats">
+        <div class="container">
+            <span class="section-label fade-in">Услуги</span>
+            <h2 class="fade-in">Форматы сопровождения</h2>
+            <p class="section-subtitle fade-in">
+                Гибкий подход, адаптированный под ваши интересы. 
+                Все форматы предполагают исключительно интеллектуальное общение.
+            </p>
+            <div class="formats-grid">
+                <div class="format-card fade-in">
+                    <div class="format-number">01</div>
+                    <h3>Светские мероприятия</h3>
+                    <p>Благотворительные вечера, гала-ужины, закрытые презентации и светские рауты. Тактичное присутствие и поддержка беседы.</p>
+                </div>
+                <div class="format-card fade-in">
+                    <div class="format-number">02</div>
+                    <h3>Культурная программа</h3>
+                    <p>Театры, выставки, музеи, концерты классической музыки и оперы. Разделение культурных интересов и обсуждение впечатлений.</p>
+                </div>
+                <div class="format-card fade-in">
+                    <div class="format-number">03</div>
+                    <h3>Деловое сопровождение</h3>
+                    <p>Деловые завтраки, обеды, корпоративные мероприятия. Поддержание лёгкой, непринуждённой беседы в неформальной обстановке.</p>
+                </div>
+                <div class="format-card fade-in">
+                    <div class="format-number">04</div>
+                    <h3>Путешествия и поездки</h3>
+                    <p>Сопровождение в деловых или личных поездках по [город] и за его пределами. Организация досуга и посещение интересных мест.</p>
+                </div>
+                <div class="format-card fade-in">
+                    <div class="format-number">05</div>
+                    <h3>Ужины и встречи</h3>
+                    <p>Совместные ужины в ресторанах, винные дегустации, гастрономические события. Интеллектуальная беседа за бокалом вина.</p>
+                </div>
+                <div class="format-card fade-in">
+                    <div class="format-number">06</div>
+                    <h3>Индивидуальный формат</h3>
+                    <p>[доступные форматы] — разработка персонального формата взаимодействия с учётом ваших пожеланий и интересов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOR WHOM -->
+    <section id="for-whom">
+        <div class="container">
+            <span class="section-label fade-in">Аудитория</span>
+            <h2 class="fade-in">Для кого этот сервис</h2>
+            <p class="section-subtitle fade-in">
+                Услуги предназначены для состоятельных мужчин старше 50 лет, 
+                которые ценят качественное общение и высокий уровень сервиса.
+            </p>
+            <div class="for-whom-list">
+                <div class="whom-item fade-in">
+                    <div class="whom-check">✓</div>
+                    <div class="whom-content">
+                        <h3>Вам важно интеллектуальное общение</h3>
+                        <p>Вы ищете собеседника, способного поддержать беседу на разнообразные темы: от искусства и культуры до бизнеса и путешествий.</p>
+                    </div>
+                </div>
+                <div class="whom-item fade-in">
+                    <div class="whom-check">✓</div>
+                    <div class="whom-content">
+                        <h3>Вы цените конфиденциальность</h3>
+                        <p>Ваш статус и репутация требуют максимальной дискретности. Я гарантирую полное соблюдение приватности.</p>
+                    </div>
+                </div>
+                <div class="whom-item fade-in">
+                    <div class="whom-check">✓</div>
+                    <div class="whom-content">
+                        <h3>Вам нужен партнёр для мероприятий</h3>
+                        <p>Вы посещаете светские, культурные или деловые события и хотите иметь рядом тактичного, воспитанного собеседника.</p>
+                    </div>
+                </div>
+                <div class="whom-item fade-in">
+                    <div class="whom-check">✓</div>
+                    <div class="whom-content">
+                        <h3>Вы устали от одиночества</h3>
+                        <p>При насыщенном образе жизни иногда не хватает простого человеческого общения — искреннего и ненавязчивого.</p>
+                    </div>
+                </div>
+                <div class="whom-item fade-in">
+                    <div class="whom-check">✓</div>
+                    <div class="whom-content">
+                        <h3>Вы уважаете личные границы</h3>
+                        <p>Вы понимаете важность чётких договорённостей, профессиональной этики и взаимного уважения.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRINCIPLES -->
+    <section class="principles" id="principles">
+        <div class="container">
+            <span class="section-label fade-in">Этика</span>
+            <h2 class="fade-in">Принципы работы и границы услуги</h2>
+            <p class="section-subtitle fade-in">
+                Деятельность строится на строгом этическом кодексе 
+                и полном соблюдении законодательства РФ.
+            </p>
+            <div class="principles-grid">
+                <div class="principle-item fade-in">
+                    <h3>Исключительно платонический характер</h3>
+                    <p>Все формы взаимодействия носят строго неинтимный характер. Никаких переговоров, исключений или двусмысленностей. Принципиальная позиция.</p>
+                </div>
+                <div class="principle-item fade-in">
+                    <h3>Полная конфиденциальность</h3>
+                    <p>Информация о клиентах, встречах и деталях общения не разглашается. Персональные данные и факты встреч остаются строго между нами.</p>
+                </div>
+                <div class="principle-item fade-in">
+                    <h3>Взаимное уважение</h3>
+                    <p>Ожидается такое же уважительное отношение, какое предоставляю клиентам. Грубость и нарушение границ — основание для прекращения сотрудничества.</p>
+                </div>
+                <div class="principle-item fade-in">
+                    <h3>Добровольность и безопасность</h3>
+                    <p>Все встречи происходят по взаимному согласию в безопасных, публичных или заранее согласованных местах. Право отказать без объяснения причин.</p>
+                </div>
+                <div class="principle-item fade-in">
+                    <h3>Прозрачность условий</h3>
+                    <p>Финансовые условия, длительность встреч и формат обсуждаются заранее. Никаких скрытых платежей и неожиданных требований.</p>
+                </div>
+                <div class="principle-item fade-in">
+                    <h3>Законопослушность</h3>
+                    <p>Деятельность полностью соответствует законодательству РФ. Не предоставляются услуги интимного характера.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image fade-in">
+                    <!-- Замените src на путь к вашему фото -->
+                    <img src="image/soya.jpg" alt="Дмитрий Соя">
+                </div>
+                <div class="about-text fade-in">
+                    <span class="section-label">О специалисте</span>
+                    <h2>Дмитрий Соя</h2>
+                    <p>
+                        [подтверждённый опыт — здесь укажите реальные факты: образование, 
+                        опыт работы в сфере сервиса, гостеприимства или ивентов, 
+                        языки, интересы в культуре и искусстве].
+                    </p>
+                    <div class="about-quote">
+                        «Я верю, что качественное общение — это искусство. 
+                        Моя цель — сделать ваше пребывание на мероприятиях 
+                        более приятным благодаря искренней беседе и уважению 
+                        к вашему времени.»
+                    </div>
+                    <ul class="about-details">
+                        <li><strong>Город</strong><span>Москва</span></li>
+                        <li><strong>Языки</strong><span>Русский, узбекский</span></li>
+                        <li><strong>Опыт</strong><span><br>Имею многолетний опыт в сфере персонального сопровождения и участия в мероприятиях различного формата — от камерных частных встреч и ужинов до деловых приёмов, светских вечеров и масштабных мероприятий.
+
+За время работы приобрел опыт взаимодействия с людьми с различными характерами, интересами и стилем общения. Умею быстро адаптироваться к обстановке, поддерживать естественную беседу и соблюдать необходимую дистанцию, сохраняя при этом лёгкость и непринуждённость общения.</br></span></li>
+                        <li><strong>Интересы</strong><span>культура, искусство, гастрономия</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process" id="process">
+        <div class="container">
+            <span class="section-label fade-in">Процесс</span>
+            <h2 class="fade-in">Как проходит знакомство и бронирование</h2>
+            <p class="section-subtitle fade-in">
+                Прозрачный и комфортный процесс от первого контакта до встречи.
+            </p>
+            <div class="process-steps">
+                <div class="step fade-in">
+                    <h3>Первичный контакт</h3>
+                    <p>Вы связываетесь удобным способом: [контакт] — Telegram, WhatsApp или телефон. Кратко опишите желаемый формат и дату.</p>
+                </div>
+                <div class="step fade-in">
+                    <h3>Конфиденциальная консультация</h3>
+                    <p>Обсуждаем детали: формат, место, продолжительность, ваши ожидания. Отвечаю на все вопросы для взвешенного решения.</p>
+                </div>
+                <div class="step fade-in">
+                    <h3>Согласование условий</h3>
+                    <p>Фиксируем финансовые условия, место и время встречи. Все договорённости прозрачны и понятны с самого начала.</p>
+                </div>
+                <div class="step fade-in">
+                    <h3>Встреча</h3>
+                    <p>Пунктуальность, опрятный внешний вид, тактичность и готовность к содержательному общению. Полное уважение к вашему времени.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container">
+            <span class="section-label fade-in">Вопросы</span>
+            <h2 class="fade-in" style="text-align: center;">Часто задаваемые вопросы</h2>
+            <div class="faq-list">
+                <div class="faq-item fade-in">
+                    <button class="faq-question">Какой характер носят встречи?</button>
+                    <div class="faq-answer">
+                        <p>Исключительно платонический и социальный. Сопровождение на мероприятия, интеллектуальное общение, совместные ужины и культурные события. Никаких интимных услуг — это принципиальная позиция без исключений.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question">Как гарантируется конфиденциальность?</button>
+                    <div class="faq-answer">
+                        <p>Я не разглашаю информацию о клиентах, встречах и деталях общения. Не веду социальные сети с упоминанием клиентов. Все персональные данные хранятся в безопасности.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question">Где проходят встречи?</button>
+                    <div class="faq-answer">
+                        <p>В безопасных публичных или заранее согласованных местах: рестораны, театры, музеи, выставочные залы, деловые клубы. Место всегда обсуждается заранее.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question">Можно ли отменить встречу?</button>
+                    <div class="faq-answer">
+                        <p>Да, при заблаговременном уведомлении. Условия отмены и предоплаты обсуждаются при согласовании встречи и фиксируются прозрачно.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question">Это законно?</button>
+                    <div class="faq-answer">
+                        <p>Да. Деятельность полностью соответствует законодательству РФ. Предоставляются исключительно социальные услуги сопровождения и общения без интимного характера.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question">Как формируется стоимость?</button>
+                    <div class="faq-answer">
+                        <p>Стоимость зависит от формата, продолжительности и локации. Все условия обсуждаются прозрачно на этапе консультации до встречи. Никаких скрытых платежей.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <span class="section-label">Контакты</span>
+                    <h2>Свяжитесь конфиденциально</h2>
+                    <p>
+                        Для первичной консультации выберите удобный способ связи. 
+                        Отвечаю в течение 24 часов.
+                    </p>
+                    <ul class="contact-methods">
+                        <li>
+                            <strong>Telegram</strong>
+                            <a href="https://t.me/denisov_dima">@denisov_dima</a>
+                        </li>
+                        <li>
+                            <strong>Email</strong>
+                            <a href="mailto:[soyaloh@gmail.com]">soyaloh@gmail.com</a>
+                        </li>
+                        <li>
+                            <strong>Москва</strong>
+                            <span>Москва</span>
+                        </li>
+                    </ul>
+                </div>
+                <form class="contact-form fade-in" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Как к вам обращаться</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-method">Удобный способ связи</label>
+                        <input type="text" id="contact-method" name="contact-method" placeholder="Telegram / WhatsApp / телефон" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="format">Интересующий формат</label>
+                        <select id="format" name="format" required>
+                            <option value="">Выберите формат</option>
+                            <option>Светское мероприятие</option>
+                            <option>Культурная программа</option>
+                            <option>Деловое сопровождение</option>
+                            <option>Ужин или встреча</option>
+                            <option>Поездка</option>
+                            <option>Индивидуальный формат</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Комментарий (необязательно)</label>
+                        <textarea id="message" name="message" placeholder="Желаемая дата, город, особые пожелания"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить запрос</button>
+                    <p class="form-note">
+                        Отправляя форму, вы соглашаетесь с конфиденциальной обработкой данных. 
+                        Я не передаю информацию третьим лицам.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="logo">СОИ<span> · </span>СОПРОВОЖДЕНИЕ</div>
+            <p>Премиальное социальное сопровождение</p>
+            <p>[город] · [контакт]</p>
+            <div class="footer-legal">
+                <p>© 2026 Дмитрий Соя. Все права защищены.</p>
+                <p>Услуги носят исключительно социальный и платонический характер. 18+</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Скролл-эффект для header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Мобильное меню
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('navLinks');
+        
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // FAQ-аккордеон
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Анимация появления элементов
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Обработка формы (заглушка — замените на реальный обработчик)
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Спасибо за запрос. Я свяжусь с вами в течение 24 часов конфиденциально.');
+            e.target.reset();
+        });
+    </script>
+
+</body>
+</html>
